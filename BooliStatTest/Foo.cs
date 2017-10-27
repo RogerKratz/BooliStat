@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Configuration;
+using NUnit.Framework;
 using BooliStat;
 
 namespace BooliStatTest
@@ -9,7 +10,7 @@ namespace BooliStatTest
         public void Testet()
         {
             var fetchdata = new DataFetcher();
-            fetchdata.Execute("callerId", "privatekey");
+            fetchdata.Execute(ConfigurationManager.AppSettings["callerId"], ConfigurationManager.AppSettings["privateKey"]);
             
         }
         
