@@ -9,8 +9,12 @@ namespace BooliStatTest
         [Test]
         public void Testet()
         {
-            var fetchdata = new DataFetcher();
-            fetchdata.Execute(ConfigurationManager.AppSettings["callerId"], ConfigurationManager.AppSettings["privateKey"]);
+            var fetchdata = new ResultFetcher();
+            fetchdata.Execute(ConfigurationManager.AppSettings["callerId"], 
+                ConfigurationManager.AppSettings["privateKey"],
+                "stockholms+innerstad",
+                3,
+                3);
             
         }
         

@@ -44,7 +44,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataFetcher.cs" />
+    <Folder Include="BooliNET" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IResultFetcher.cs" />
+    <Compile Include="SoldResultFetcher.cs" />
+    <Compile Include="StoreDataToDisc.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
