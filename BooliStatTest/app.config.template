@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-    <appSettings>
-        <!-- Put your auth credentials here -->
-        <add key="callerId" value="[callerId]"/>
-        <add key="privateKey" value="[privateKey]"/>
-        <add key="filePath" value="[filePath]"/>
-    </appSettings>
-</configuration>

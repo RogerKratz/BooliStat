@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="FakeAndHelpers\FakeResultFetcher.cs" />
     <Compile Include="FakeAndHelpers\SoldFactory.cs" />
-    <Compile Include="SetupAndTeardown.cs" />
     <Compile Include="Tests\CreateMedianPricesTest.cs" />
     <Compile Include="Tests\FetchSoldApartmentTest.cs" />
   </ItemGroup>
@@ -61,13 +60,5 @@
       <Name>BooliStat</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="app.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="BeforeBuild">
-    <Copy SourceFiles="app.config.template" DestinationFiles="app.config" Condition="!Exists('app.config')" />
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
 </Project>
