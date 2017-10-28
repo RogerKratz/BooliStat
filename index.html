@@ -5,16 +5,15 @@
 </head>
  
 <body>
-Prisutvecking Sthlms innerstad
 <div id="graphdiv"></div>
 <script type="text/javascript">
-  g = new Dygraph(
-    // containing div
-    document.getElementById("graphdiv"),
-	"booli.txt"
+  g = new Dygraph(document.getElementById("graphdiv"), "booli.txt",{
+      title: 'Prisutveckling Sthlm innerstad',
+      ylabel: 'Kr/kvm'
+      }
 	);
 </script>
-
+<br><br>
 Tack till <img src="https://bcdn.se/images/resources/booli_logo.png"/>
 och till <a href="http://dygraphs.com/">dygraphs</a>.
 </body>
