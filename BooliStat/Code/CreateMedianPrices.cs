@@ -6,7 +6,7 @@ namespace BooliStat.Code
 {
     public class CreateMedianPrices
     {
-        public const int DaysBack = 14;
+        public const int DaysBack = 20;
         
         public IDictionary<DateTime, int> Execute(DateTime fromDate, IEnumerable<SoldApartment> soldApartments)
         {
