@@ -13,9 +13,10 @@ namespace BooliStat
             var callerId = args[0];
             var privateKey = args[1];
             var file = args[2];
+            const string area = "stockholms+innerstad";
 
             var fetchSoldApartments =
-                new FetchSoldApartments(new ResultFetcher(new FetchSettings(callerId, privateKey, "stockholms+innerstad", 500)));
+                new FetchSoldApartments(new ResultFetcher(new FetchSettings(callerId, privateKey, area, 500)));
             var createMedianPrices = new CreateMedianPrices();
             var result = createMedianPrices.Execute(new DateTime(2013,1,1), fetchSoldApartments.Execute());
 
