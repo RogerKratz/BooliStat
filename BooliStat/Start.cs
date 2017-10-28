@@ -20,7 +20,7 @@ namespace BooliStat
             var createMedianPrices = new CreateMedianPrices();
             var result = createMedianPrices.Execute(fetchSoldApartments.Execute());
 
-            var output = result.Select(item => $"{item.Key}, {item.Value:d}");
+            var output = result.Select(item => $"{item.Key:d}, {item.Value}");
             File.WriteAllLines(file, output);
         }
     }
