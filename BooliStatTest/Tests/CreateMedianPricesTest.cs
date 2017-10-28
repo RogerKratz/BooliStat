@@ -12,7 +12,7 @@ namespace BooliStatTest.Tests
         public void ShouldReturnThePricePerKvmIfOnlyOne()
         {
             var target = new CreateMedianPrices();
-            var result = target.Execute(new[]{new SoldApartment(1000, DateTime.Today, 10)});
+            var result = target.Execute(DateTime.Today, new[]{new SoldApartment(1000, DateTime.Today, 10)});
             result[DateTime.Today]
                 .Should().Be.EqualTo(100);
         }
@@ -29,7 +29,7 @@ namespace BooliStatTest.Tests
                 new SoldApartment(1, DateTime.Today.AddDays(1), 1)
             };
 
-            var result = target.Execute(soldApartments);
+            var result = target.Execute(DateTime.Today.AddDays(-CreateMedianPrices.DaysBack - 1), soldApartments);
             result[DateTime.Today]
                 .Should().Be.EqualTo(90);
         }
@@ -44,7 +44,7 @@ namespace BooliStatTest.Tests
                 new SoldApartment(800, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack), 10),
             };
 
-            var result = target.Execute(soldApartments);
+            var result = target.Execute(DateTime.Today.AddDays(-CreateMedianPrices.DaysBack), soldApartments);
             result[DateTime.Today.AddDays(-1)]
                 .Should().Be.EqualTo(80);
         }
@@ -59,7 +59,7 @@ namespace BooliStatTest.Tests
                 new SoldApartment(100, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*10), 10),
             };
 
-            var result = target.Execute(soldApartments);
+            var result = target.Execute(DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*10), soldApartments);
             result[DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*2)]
                 .Should().Be.EqualTo(0);
         }
@@ -75,9 +75,25 @@ namespace BooliStatTest.Tests
                 new SoldApartment(1, DateTime.Today, 0)
             };
 
-            var result = target.Execute(soldApartments);
+            var result = target.Execute(DateTime.Today, soldApartments);
             result[DateTime.Today]
                 .Should().Be.EqualTo(90);
+        }
+
+        [Test]
+        public void OnlyReturnAfterFromDate()
+        {
+            var target = new CreateMedianPrices();
+            var soldApartments = new List<SoldApartment>
+            {
+                new SoldApartment(100, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack), 1),
+            };
+
+            var result = target.Execute(DateTime.Today, soldApartments);
+            result[DateTime.Today]
+                .Should().Be.EqualTo(100);
+            result.ContainsKey(DateTime.Today.AddDays(-1))
+                .Should().Be.False();
         }
     }
 }

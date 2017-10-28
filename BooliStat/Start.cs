@@ -17,7 +17,7 @@ namespace BooliStat
             var fetchSoldApartments =
                 new FetchSoldApartments(new ResultFetcher(new FetchSettings(callerId, privateKey, "stockholms+innerstad", 500)));
             var createMedianPrices = new CreateMedianPrices();
-            var result = createMedianPrices.Execute(fetchSoldApartments.Execute());
+            var result = createMedianPrices.Execute(new DateTime(2013,1,1), fetchSoldApartments.Execute());
 
             var output = result.Select(item => $"{item.Key:d}, {item.Value}");
             File.WriteAllLines(file, output);

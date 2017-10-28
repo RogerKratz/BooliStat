@@ -8,14 +8,17 @@ namespace BooliStat.Code
     {
         public const int DaysBack = 30;
         
-        public IDictionary<DateTime, int> Execute(IEnumerable<SoldApartment> soldApartments)
+        public IDictionary<DateTime, int> Execute(DateTime fromDate, IEnumerable<SoldApartment> soldApartments)
         {
             var orderedSold = soldApartments.OrderBy(x => x.Date);
-            var firstDate = orderedSold.First().Date;
             var lastDate = orderedSold.Last().Date;
+            if (lastDate < fromDate)
+            {
+                lastDate = fromDate;                
+            }
            
             var ret = new Dictionary<DateTime, int>();
-            var currentDate = firstDate;
+            var currentDate = fromDate;
             while (currentDate <= lastDate)
             {
                 var pricePerKvm = (from soldApartment in soldApartments 
