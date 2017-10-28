@@ -14,11 +14,11 @@ g = new Dygraph(document.getElementById("graphdiv"), "booli.txt",{
 );
 	
 function setUpdatedDate(url) {
-   var req=new XMLHttpRequest();
-   req.open("HEAD", "booli.txt", false);
+    var req=new XMLHttpRequest();
+    req.open("HEAD", "booli.txt", false);
 	req.send(null);
 	if(req.status== 200){
-		document.getElementById("updated").innerHTML = text;
+		document.getElementById("updated").innerHTML = req.getResponseHeader('Last-Modified');
 	}
 }
 </script>
