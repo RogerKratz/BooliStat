@@ -39,6 +39,9 @@
     <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
       <HintPath>..\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="SharpTestsEx, Version=1.2.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\SharpTestsEx.2.0.0\lib\net45\SharpTestsEx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
@@ -46,11 +49,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeResultFetcher.cs" />
-    <Compile Include="Foo.cs" />
+    <Compile Include="FakeAndHelpers\FakeResultFetcher.cs" />
+    <Compile Include="FakeAndHelpers\SoldFactory.cs" />
     <Compile Include="SetupAndTeardown.cs" />
-    <Compile Include="SimpleTest.cs" />
-    <Compile Include="SoldFactory.cs" />
+    <Compile Include="Tests\CreateMedianPricesTest.cs" />
+    <Compile Include="Tests\FetchSoldApartmentTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BooliStat\BooliStat.csproj">
