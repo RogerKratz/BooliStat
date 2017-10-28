@@ -4,18 +4,29 @@
 <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.css" />
 </head>
  
-<body>
+<body onload="setUpdatedDate()">
 <div id="graphdiv"></div>
 <script type="text/javascript">
-  g = new Dygraph(document.getElementById("graphdiv"), "booli.txt",{
-      title: 'Prisutveckling Sthlm innerstad',
-      ylabel: 'Kr/kvm'
-      }
-	);
+g = new Dygraph(document.getElementById("graphdiv"), "booli.txt",{
+  title: 'Prisutveckling Sthlm innerstad',
+  ylabel: 'Kr/kvm'
+  }
+);
+	
+function setUpdatedDate(url) {
+   var req=new XMLHttpRequest();
+   req.open("HEAD", "booli.txt", false);
+	req.send(null);
+	if(req.status== 200){
+		document.getElementById("updated").innerHTML = text;
+	}
+}
 </script>
 <br><br>
 Tack till <img src="https://bcdn.se/images/resources/booli_logo.png"/>
 och till <a href="http://dygraphs.com/">dygraphs</a>.
+<br>
+Senast uppdaterad <div id="updated"/>
 </body>
 
 </html>
