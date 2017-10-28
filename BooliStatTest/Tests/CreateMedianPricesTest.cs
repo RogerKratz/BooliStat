@@ -63,5 +63,21 @@ namespace BooliStatTest.Tests
             result[DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*2)]
                 .Should().Be.EqualTo(0);
         }
+
+        [Test]
+        public void SkipApartmentsWithNoKnownArea()
+        {
+            var target = new CreateMedianPrices();
+            var soldApartments = new List<SoldApartment>
+            {
+                new SoldApartment(1000, DateTime.Today, 10),
+                new SoldApartment(800, DateTime.Today, 10),
+                new SoldApartment(1, DateTime.Today, 0)
+            };
+
+            var result = target.Execute(soldApartments);
+            result[DateTime.Today]
+                .Should().Be.EqualTo(90);
+        }
     }
 }

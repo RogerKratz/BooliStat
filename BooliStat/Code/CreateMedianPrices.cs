@@ -22,9 +22,10 @@ namespace BooliStat.Code
                     where soldApartment.Date <= currentDate && soldApartment.Date >= currentDate.AddDays(-DaysBack) 
                     let price = soldApartment.Price 
                     let size = soldApartment.Area 
+                    where size > 0 
                     select price / size)
                     .ToList();
-                ret[currentDate] = pricePerKvm.Any() ? pricePerKvm.Sum() / pricePerKvm.Count() : 0;
+                ret[currentDate] = pricePerKvm.Any() ? pricePerKvm.Sum() / pricePerKvm.Count : 0;
 
                 currentDate = currentDate.AddDays(1);
             }
