@@ -48,5 +48,20 @@ namespace BooliStatTest.Tests
             result[DateTime.Today.AddDays(-1)]
                 .Should().Be.EqualTo(80);
         }
+
+        [Test]
+        public void ShouldReturnZeroIfNoSold()
+        {
+            var target = new CreateMedianPrices();
+            var soldApartments = new List<SoldApartment>
+            {
+                new SoldApartment(1000, DateTime.Today, 10),
+                new SoldApartment(100, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*10), 10),
+            };
+
+            var result = target.Execute(soldApartments);
+            result[DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*2)]
+                .Should().Be.EqualTo(0);
+        }
     }
 }

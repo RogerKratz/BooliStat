@@ -24,8 +24,8 @@ namespace BooliStat.Code
                     let size = soldApartment.Area 
                     select price / size)
                     .ToList();
-                ret[currentDate] = pricePerKvm.Sum() / pricePerKvm.Count();
-                
+                ret[currentDate] = pricePerKvm.Any() ? pricePerKvm.Sum() / pricePerKvm.Count() : 0;
+
                 currentDate = currentDate.AddDays(1);
             }
            
