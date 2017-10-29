@@ -13,7 +13,7 @@ namespace BooliStat
             var callerId = args[0];
             var privateKey = args[1];
             var file = args[2];
-            const string area = "stockholms+innerstad";
+            var area = args[3];
 
             var fetchSoldApartments =
                 new FetchSoldApartments(new ResultFetcher(new FetchSettings(callerId, privateKey, area, 500)));

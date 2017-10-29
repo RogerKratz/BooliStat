@@ -12,9 +12,9 @@
 </head>
  
 <body onload="setUpdatedDate()">
-<div id="graphdiv"></div>
+<div id="graphSthlmInnerstad"></div>
 <script type="text/javascript">
-g = new Dygraph(document.getElementById("graphdiv"), "booli.txt",{
+g = new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt",{
   title: 'Prisutveckling Sthlm innerstad',
   ylabel: 'Kr/kvm'
   }
@@ -27,13 +27,16 @@ function setUpdatedDate(url) {
 	if(req.status== 200){
 		document.getElementById("updated").innerHTML = req.getResponseHeader('Last-Modified');
 	}
+	else {
+        document.getElementById("updated").innerHTML = "[okänt]"
+    }
 }
 </script>
 <br><br>
 Tack till <img src="https://bcdn.se/images/resources/booli_logo.png"/>
 och till <a href="http://dygraphs.com/">dygraphs</a>.
 <br>
-Senast uppdaterad <div id="updated"/>
+Senast data från <div id="updated"/>
 </body>
 
 </html>
