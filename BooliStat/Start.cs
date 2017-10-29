@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Web;
 using BooliStat.Code;
 
 namespace BooliStat
@@ -14,9 +15,9 @@ namespace BooliStat
             var privateKey = args[1];
             var file = args[2];
             var area = args[3];
-
+            var areatouse = area == "soder" ? "södermalm" : "stockholms+innerstad";
             var fetchSoldApartments =
-                new FetchSoldApartments(new ResultFetcher(new FetchSettings(callerId, privateKey, area, 500)));
+                new FetchSoldApartments(new ResultFetcher(new FetchSettings(callerId, privateKey, areatouse, 500)));
             var createMedianPrices = new CreateMedianPrices();
             var result = createMedianPrices.Execute(new DateTime(2013,1,1), fetchSoldApartments.Execute());
 
