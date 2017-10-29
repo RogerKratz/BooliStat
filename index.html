@@ -13,12 +13,17 @@
  
 <body onload="setUpdatedDate()">
 <div id="graphSthlmInnerstad"></div>
+<div id="graphSoder"></div>
 <script type="text/javascript">
-g = new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt",{
-  title: 'Prisutveckling Sthlm innerstad',
-  ylabel: 'Kr/kvm'
-  }
+new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt",{
+        title: 'Prisutveckling Sthlm innerstad',
+    }
 );
+new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSoder.txt",{
+        title: 'Prisutveckling Södermalm',
+    }
+);
+
 	
 function setUpdatedDate(url) {
     var req=new XMLHttpRequest();
