@@ -13,6 +13,7 @@
  
 <body onload="setUpdatedDate()">
 <div id="graphSthlmInnerstad"></div>
+<br><br>
 <div id="graphSoder"></div>
 <script type="text/javascript">
 var g1 = new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt",{
@@ -27,7 +28,7 @@ var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt",{
 	
 function setUpdatedDate(url) {
     var req=new XMLHttpRequest();
-    req.open("HEAD", "booli.txt", false);
+    req.open("HEAD", "booliSthlm.txt", false);
 	req.send(null);
 	if(req.status== 200){
 		document.getElementById("updated").innerHTML = req.getResponseHeader('Last-Modified');
@@ -37,7 +38,7 @@ function setUpdatedDate(url) {
     }
 }
 </script>
-<br><br>
+<br><br><br><br>
 Tack till <img src="https://bcdn.se/images/resources/booli_logo.png"/>
 och till <a href="http://dygraphs.com/">dygraphs</a>.
 <br>
