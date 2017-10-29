@@ -19,7 +19,7 @@ var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt",{
 );
 
 	
-function setUpdatedDate(url) {
+function setUpdatedDate() {
     var req=new XMLHttpRequest();
     req.open("HEAD", "booliSthlm.txt", false);
 	req.send(null);
