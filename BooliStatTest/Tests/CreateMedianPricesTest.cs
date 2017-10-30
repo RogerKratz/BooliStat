@@ -18,21 +18,20 @@ namespace BooliStatTest.Tests
         }
 
         [Test]
-        public void ShouldUseDaysBack()
+        public void ShouldReturnAveragePricePerKvmIfMultiple()
         {
             var target = new CreateMedianPrices();
             var soldApartments = new List<SoldApartment>
             {
                 new SoldApartment(1000, DateTime.Today, 10),
-                new SoldApartment(800, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack), 10),
-                new SoldApartment(1, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack - 1), 1),
-                new SoldApartment(1, DateTime.Today.AddDays(1), 1)
+                new SoldApartment(800, DateTime.Today, 10),
+                new SoldApartment(90, DateTime.Today, 1)
             };
-
-            var result = target.Execute(DateTime.Today.AddDays(-CreateMedianPrices.DaysBack - 1), soldApartments);
+            var result = target.Execute(DateTime.Today, soldApartments);
             result[DateTime.Today]
                 .Should().Be.EqualTo(90);
         }
+
 
         [Test]
         public void ShouldReturnValuesForNonSoldDays()
@@ -41,26 +40,11 @@ namespace BooliStatTest.Tests
             var soldApartments = new List<SoldApartment>
             {
                 new SoldApartment(1000, DateTime.Today, 5),
-                new SoldApartment(800, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack), 10),
+                new SoldApartment(800, DateTime.Today.AddDays(-10), 10),
             };
 
-            var result = target.Execute(DateTime.Today.AddDays(-CreateMedianPrices.DaysBack), soldApartments);
+            var result = target.Execute(DateTime.Today.AddDays(-10), soldApartments);
             result[DateTime.Today.AddDays(-1)]
-                .Should().Be.EqualTo(80);
-        }
-
-        [Test]
-        public void ShouldReturnZeroIfNoSold()
-        {
-            var target = new CreateMedianPrices();
-            var soldApartments = new List<SoldApartment>
-            {
-                new SoldApartment(1000, DateTime.Today, 10),
-                new SoldApartment(100, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*10), 10),
-            };
-
-            var result = target.Execute(DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*10), soldApartments);
-            result[DateTime.Today.AddDays(-CreateMedianPrices.DaysBack*2)]
                 .Should().Be.EqualTo(0);
         }
 
@@ -86,12 +70,12 @@ namespace BooliStatTest.Tests
             var target = new CreateMedianPrices();
             var soldApartments = new List<SoldApartment>
             {
-                new SoldApartment(100, DateTime.Today.AddDays(-CreateMedianPrices.DaysBack), 1),
+                new SoldApartment(100, DateTime.Today.AddDays(-1), 1),
             };
 
             var result = target.Execute(DateTime.Today, soldApartments);
             result[DateTime.Today]
-                .Should().Be.EqualTo(100);
+                .Should().Be.EqualTo(0);
             result.ContainsKey(DateTime.Today.AddDays(-1))
                 .Should().Be.False();
         }

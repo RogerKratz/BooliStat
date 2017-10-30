@@ -11,12 +11,16 @@
 <script type="text/javascript">
 var g1 = new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt",{
         title: 'Slutpriser Sthlm innerstad',
-        showRangeSelector: true
+        showRangeSelector: true,
+        showRoller: true,
+        rollPeriod: 20
     }
 );
 var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt",{
         title: 'Slutpriser Södermalm',
-        showRangeSelector: true
+        showRangeSelector: true,
+        showRoller: true,
+        rollPeriod: 20
     }
 );
 
