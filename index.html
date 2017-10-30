@@ -10,11 +10,13 @@
 <div id="graphSoder"></div>
 <script type="text/javascript">
 var g1 = new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt",{
-        title: 'Prisutveckling Sthlm innerstad'
+        title: 'Slutpriser Sthlm innerstad',
+        showRangeSelector: true
     }
 );
 var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt",{
-        title: 'Prisutveckling Södermalm'
+        title: 'Slutpriser Södermalm',
+        showRangeSelector: true
     }
 );
 
