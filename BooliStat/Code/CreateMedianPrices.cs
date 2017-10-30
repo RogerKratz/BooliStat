@@ -31,7 +31,7 @@ namespace BooliStat.Code
                     .ToList();
                 if (pricePerKvm.Any())
                 {
-                    ret[currentDate] = pricePerKvm.Sum() / pricePerKvm.Count;    
+                    ret[currentDate] = (int) pricePerKvm.Average();    
                 }
 
                 currentDate = currentDate.AddDays(1);
