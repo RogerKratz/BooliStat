@@ -9,14 +9,14 @@
 <br><br>
 <div id="graphSoder"></div>
 <script type="text/javascript">
-var g1 = new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt",{
+var g1 = new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt?_=' + new Date().getTime()",{
         title: 'Slutpriser Sthlm innerstad',
         showRangeSelector: true,
         showRoller: true,
         rollPeriod: 20
     }
 );
-var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt",{
+var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt?_=' + new Date().getTime()",{
         title: 'Slutpriser Södermalm',
         showRangeSelector: true,
         showRoller: true,
@@ -27,7 +27,7 @@ var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt",{
 	
 function setUpdatedDate() {
     var req=new XMLHttpRequest();
-    req.open("HEAD", "booliSthlm.txt", false);
+    req.open("HEAD", "booliSthlm.txt?_=' + new Date().getTime()", false);
 	req.send(null);
 	if(req.status== 200){
 		document.getElementById("updated").innerHTML = req.getResponseHeader('Last-Modified');

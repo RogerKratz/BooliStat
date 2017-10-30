@@ -8,6 +8,9 @@ namespace BooliStat.Code
     {
         public IDictionary<DateTime, int> Execute(DateTime fromDate, IEnumerable<SoldApartment> soldApartments)
         {
+            if(!soldApartments.Any())
+                return new Dictionary<DateTime, int>();
+            
             var orderedSold = soldApartments.OrderBy(x => x.Date);
             var lastDate = orderedSold.Last().Date;
             if (lastDate < fromDate)
@@ -26,7 +29,10 @@ namespace BooliStat.Code
                     where size > 0 
                     select price / size)
                     .ToList();
-                ret[currentDate] = pricePerKvm.Any() ? pricePerKvm.Sum() / pricePerKvm.Count : 0;
+                if (pricePerKvm.Any())
+                {
+                    ret[currentDate] = pricePerKvm.Sum() / pricePerKvm.Count;    
+                }
 
                 currentDate = currentDate.AddDays(1);
             }

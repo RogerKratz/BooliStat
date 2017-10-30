@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BooliStat.Code;
 using NUnit.Framework;
 using SharpTestsEx;
@@ -32,22 +33,6 @@ namespace BooliStatTest.Tests
                 .Should().Be.EqualTo(90);
         }
 
-
-        [Test]
-        public void ShouldReturnValuesForNonSoldDays()
-        {
-            var target = new CreateMedianPrices();
-            var soldApartments = new List<SoldApartment>
-            {
-                new SoldApartment(1000, DateTime.Today, 5),
-                new SoldApartment(800, DateTime.Today.AddDays(-10), 10),
-            };
-
-            var result = target.Execute(DateTime.Today.AddDays(-10), soldApartments);
-            result[DateTime.Today.AddDays(-1)]
-                .Should().Be.EqualTo(0);
-        }
-
         [Test]
         public void SkipApartmentsWithNoKnownArea()
         {
@@ -65,7 +50,7 @@ namespace BooliStatTest.Tests
         }
 
         [Test]
-        public void OnlyReturnAfterFromDate()
+        public void ShouldOnlyReturnValueAfterFromDate()
         {
             var target = new CreateMedianPrices();
             var soldApartments = new List<SoldApartment>
@@ -74,10 +59,30 @@ namespace BooliStatTest.Tests
             };
 
             var result = target.Execute(DateTime.Today, soldApartments);
-            result[DateTime.Today]
-                .Should().Be.EqualTo(0);
-            result.ContainsKey(DateTime.Today.AddDays(-1))
+            result.Should().Be.Empty();
+        }
+
+        [Test]
+        public void ShouldSkipDaysWithNoSales()
+        {
+            var target = new CreateMedianPrices();
+            var soldApartments = new List<SoldApartment>
+            {
+                new SoldApartment(100, DateTime.Today.AddDays(-1), 1)
+            };
+            var result = target.Execute(DateTime.Today.AddDays(-1), soldApartments);
+            
+            result.ContainsKey(DateTime.Today)
                 .Should().Be.False();
+        }
+        
+        [Test]
+        public void ShouldHandleNoDataAtAll()
+        {
+            var target = new CreateMedianPrices();
+            var result = target.Execute(DateTime.Today, Enumerable.Empty<SoldApartment>());
+
+            result.Should().Be.Empty();
         }
     }
 }
