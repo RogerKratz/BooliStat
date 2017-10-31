@@ -36,7 +36,9 @@ function setUpdatedDate() {
     req.open("HEAD", "booliSthlm.txt?_=' + new Date().getTime()", false);
 	req.send(null);
 	if(req.status== 200){
-		document.getElementById("updated").innerHTML = req.getResponseHeader('Last-Modified');
+	    var lastModifiedDateTicks = Date.parse(req.getResponseHeader('Last-Modified'));
+	    var lastModifiedDate = new Date(lastModifiedDateTicks);
+		document.getElementById("updated").innerHTML = lastModifiedDate.toLocaleString();
 	}
 	else {
         document.getElementById("updated").innerHTML = "[okänt]"
