@@ -15,35 +15,36 @@
 <br><br>
 <div id="graphSoder"></div>
 <script type="text/javascript">
-var g1 = new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt?_=' + new Date().getTime()",{
+    
+    var unique= new Date().getTime();
+    new Dygraph(document.getElementById("graphSthlmInnerstad"), "booliSthlm.txt?_=" + unique,{
         title: 'Slutpriser Sthlm innerstad',
         showRangeSelector: true,
         showRoller: true,
         rollPeriod: 20
-    }
-);
-var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt?_=' + new Date().getTime()",{
+        }
+    );
+    var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt?_=" + unique,{
         title: 'Slutpriser Södermalm',
         showRangeSelector: true,
         showRoller: true,
         rollPeriod: 20
+        }
+    );
+    
+    function setUpdatedDate() {
+        var req=new XMLHttpRequest();
+        req.open("HEAD", "booliSthlm.txt?_=" + unique, false);
+        req.send(null);
+        if(req.status== 200){
+            var lastModifiedDateTicks = Date.parse(req.getResponseHeader('Last-Modified'));
+            var lastModifiedDate = new Date(lastModifiedDateTicks);
+            document.getElementById("updated").innerHTML = lastModifiedDate.toLocaleString();
+        }
+        else {
+            document.getElementById("updated").innerHTML = "[okänt]"
+        }
     }
-);
-
-	
-function setUpdatedDate() {
-    var req=new XMLHttpRequest();
-    req.open("HEAD", "booliSthlm.txt?_=' + new Date().getTime()", false);
-	req.send(null);
-	if(req.status== 200){
-	    var lastModifiedDateTicks = Date.parse(req.getResponseHeader('Last-Modified'));
-	    var lastModifiedDate = new Date(lastModifiedDateTicks);
-		document.getElementById("updated").innerHTML = lastModifiedDate.toLocaleString();
-	}
-	else {
-        document.getElementById("updated").innerHTML = "[okänt]"
-    }
-}
 </script>
 <ul class="infoText" style="margin-top: 30px">
     <li>Dra i slidern under grafen för att ändra område/tidsperiod.</li>
