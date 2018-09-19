@@ -25,6 +25,11 @@
 </div>
 <br><br>
 <div id="graphSoder"></div>
+<div style="padding-left: 30px; padding-top: 30px">
+    <script type="text/javascript" src="https://track.double.net/display.js?adspace=16251&width=468&height=60"></script>
+</div>
+<br><br>
+<div id="graphSthlmInnerstad3rooms"></div>
 <script type="text/javascript">
     
     var unique= new Date().getTime();
@@ -36,12 +41,20 @@
         labels: [ "Datum", "kr/kvm" ]
         }
     );
-    var g2 = new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt?_=" + unique,{
+    new Dygraph(document.getElementById("graphSoder"), "booliSoder.txt?_=" + unique,{
         title: 'Slutpriser Södermalm',
         showRangeSelector: true,
         showRoller: true,
         rollPeriod: 20,
         labels: [ "Datum", "kr/kvm" ]
+        }
+    );
+    new Dygraph(document.getElementById("graphSthlmInnerstad3rooms"), "booliSthlm3rooms.txt?_=" + unique,{
+            title: 'Slutpriser Sthlm innerstad',
+            showRangeSelector: true,
+            showRoller: true,
+            rollPeriod: 20,
+            labels: [ "Datum", "kr/kvm" ]
         }
     );
     
