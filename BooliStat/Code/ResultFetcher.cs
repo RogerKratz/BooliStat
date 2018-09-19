@@ -20,6 +20,11 @@ namespace BooliStat.Code
 				Limit = _fetchSettings.Limit,
 				Offset = offset
 			};
+			if (_fetchSettings.Rooms > 0)
+			{
+				sc.MaxRooms = _fetchSettings.Rooms;
+				sc.MinRooms = _fetchSettings.Rooms;
+			}
 			var scSold = new ExtendedSearchConditionSold();
 		   	return booli.GetResultSold(sc, scSold);
 		}
