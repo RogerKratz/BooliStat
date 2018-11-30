@@ -9,7 +9,7 @@ namespace BooliStatTest.FakeAndHelpers
         
         public static Sold Create(int id)
         {
-            return new Sold()
+            return new Sold
             {
                 booliId = id,
                 soldPrice = rnd.Next(),

@@ -55,7 +55,7 @@ namespace BooliStatTest.Tests
             var target = new CreateMedianPrices();
             var soldApartments = new List<SoldApartment>
             {
-                new SoldApartment(100, DateTime.Today.AddDays(-1), 1),
+                new SoldApartment(100, DateTime.Today.AddDays(-1), 1)
             };
 
             var result = target.Execute(DateTime.Today, soldApartments);
