@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooliStat", "BooliStat\Bool
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooliStatTest", "BooliStatTest\BooliStatTest.csproj", "{0C32CE09-77F0-44C7-8479-D9A9415BC313}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{2F6FB410-64FB-4DF1-80DB-F69773BA135F}"
+ProjectSection(SolutionItems) = preProject
+	index.html = index.html
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
