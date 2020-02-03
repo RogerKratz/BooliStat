@@ -21,6 +21,8 @@
 <div id="graphSthlmInnerstad3rooms" class="graph"></div>
 <br><br>
 <div id="graphSoder" class="graph"></div>
+<br><br>
+<div id="graphArsta" class="graph"></div>
 <script type="text/javascript">
     
     var unique= new Date().getTime();
@@ -41,6 +43,15 @@
         }
     );
     new Dygraph(document.getElementById("graphSthlmInnerstad3rooms"), "booliSthlm3rooms.txt?_=" + unique,{
+            title: 'Slutpriser Sthlm innerstad - 3 rum',
+            showRangeSelector: true,
+            showRoller: true,
+            rollPeriod: 30,
+            labels: [ "Datum", "kr/kvm" ]
+        }
+    );
+
+    new Dygraph(document.getElementById("graphArsta"), "booliArsta.txt?_=" + unique,{
             title: 'Slutpriser Sthlm innerstad - 3 rum',
             showRangeSelector: true,
             showRoller: true,
