@@ -16,9 +16,9 @@ namespace BooliStat
             var area = args[3];
             var rooms = int.Parse(args[4]);
             
-            var areaToUse = area == "soder" ? "södermalm" : "stockholms+innerstad";
+           // var areaToUse = area == "soder" ? "södermalm" : "stockholms+innerstad";
             var fetchSoldApartments =
-                new FetchSoldApartments(new ResultFetcher(new FetchSettings(callerId, privateKey, areaToUse, 500, rooms)));
+                new FetchSoldApartments(new ResultFetcher(new FetchSettings(callerId, privateKey, area, 500, rooms)));
             var createMedianPrices = new CreateMedianPrices();
             var result = createMedianPrices.Execute(new DateTime(2010,1,1), fetchSoldApartments.Execute());
 
